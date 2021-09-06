@@ -4,6 +4,8 @@
 
 This is all very much open for discussion and any fun or creative solutions. Let's over- optimize the fuck out of this from the start!
 
+Read all new entries in `docs/` and use files here to share ideas and thoughts.
+
 ### Project Structure
 
 Open to ideas here but I'll initialize the project with a skeleton structure something like below:
