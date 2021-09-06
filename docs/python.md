@@ -14,8 +14,8 @@ I don't know/ have not used any automated way of keeping this in line other than
 
 To quickly save the current python environments installed modules run the following at the project root directory:
 
-    `pip freeze -r requirements.txt`
+    pip freeze -r requirements.txt
 
 And then ensure the requirements file is added to a commit bringing in the feature:
 
-    `git add requirements.txt`
+    git add requirements.txt
