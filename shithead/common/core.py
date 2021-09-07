@@ -2,14 +2,59 @@
 """
 Core game component file. Contains game object classes.
 """
-from dataclasses import dataclass
 
 
-@dataclass
 class Card:
     """Class for holding card values."""
-    suit: str
-    value: int
+
+    valid_suit = ['club', 'diamond', 'heart', 'spade']
+    
+    def __init__(self, suit, value):
+        
+        self.suit = suit
+        self.value = value
+
+    @property
+    def suit(self):
+        return self.__suit
+
+    @suit.setter
+    def suit(self, x):
+        # Type check
+        if type(x) != str:
+            raise TypeError('Attribute suit should be of type `str`')
+
+        # Ensure a valid suit is entered.
+        if not x.lower() in self.valid_suit:
+            raise ValueError(f'Attribute suit must be one of {self.valid_suit}')
+        else:
+            self.__suit = x.lower()
+        
+    @property
+    def value(self):
+        return self.__value
+
+    @value.setter
+    def value(self, x):
+        # Type check
+        if type(x) != int:
+            raise TypeError('Attribute value should be of type `int`')
+
+        # Ensure set value is in valid range
+        if not x in range(1,14):
+            raise ValueError('Attribute value must be in the range of 1 >= 14')
+        else:
+            self.__value = x
+        
+    def __eq__(self, o: object) -> bool:
+        # Only use value of class to compare
+        if isinstance(o, Card):
+            return self.value == o.value
+        elif isinstance(o, int):
+            return self.value == o
+        else:
+            return False
+
     
 
 # TODO: Create the Deck as a Card generator. Initializing creates all cards and 
