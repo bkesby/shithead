@@ -8,10 +8,10 @@ from shithead.common.core import Card
 
 
 class TestCard(unittest.TestCase):
-    
+
     # Test Card creation and values
     def test_card(self):
-        card = Card('Heart', 1)
+        card = Card('H', 1)
         self.assertEqual(card.value, 1)
         self.assertEqual(card.suit, 'heart')
         # Failed creation
@@ -24,11 +24,11 @@ class TestCard(unittest.TestCase):
             error = Card('heart', 0)
             error = Card('heart', 15)
             del error
-        
+
     # Test card ordering is correct
     def test_order(self):
         pass
-    
+
     # Test if comparing cards can be done
     def test_comparisons(self):
         card1 = Card('heart', 1)
