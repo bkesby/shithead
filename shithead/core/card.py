@@ -8,6 +8,7 @@ class Card:
     """Class for holding card values."""
 
     suits = {'c': 'club', 'd': 'diamond', 'h': 'heart', 's': 'spade'}
+    key = {'11': 'Jack', '12': 'Queen', '13': 'King', '14': 'Ace'}
 
     def __init__(self, suit, value):
 
@@ -51,8 +52,22 @@ class Card:
         else:
             self.__value = x
 
+    def str_value(self) -> str:
+        """Return the string repesentation of card value."""
+        if self.value < 11:
+            return str(self.value)
+        else:
+            # Using key dictionary to lookup string value
+            return self.key[str(self.value)]
+
+    def __str__(self) -> str:
+        return f"{self.str_value()} of {self.suit.capitalize()}s"
+
+    def __repr__(self) -> str:
+        return f"Card({self.suit}, {self.value})"
+
     # ====================================================================== #
-    #                               Comparisons                              #
+    #                             Comparisons                                #
     # ====================================================================== #
     def __eq__(self, o: object) -> bool:
         # Only use value of class to compare
@@ -64,7 +79,12 @@ class Card:
             return False
 
     def __ne__(self, o: object) -> bool:
-        NotImplemented
+        if isinstance(o, Card):
+            return self.value != o.value
+        elif isinstance(o, int):
+            return self.value != o
+        else:
+            return False
 
     def __lt__(self, o: object) -> bool:
         if isinstance(o, Card):
