@@ -22,7 +22,7 @@ It will be good to have game definitions outlined early to help with documentati
 
 - __Round__: One completion of all cycles of play from all cards being dealt until all but one player has played all their available cards.
 
-- __Cycle__: Measured as the start of player index one starting a turn to the end of player index -1 finishing their turn. Relevant for '3' rules when bringing a player back in. 
+- __Cycle__: Measured as the start of player index one starting a turn to the end of player index -1 finishing their turn. Relevant for '3' rules when bringing a player back in.
 
 - __Turn__: Time in which a player makes legal moves. There is only ever one turn at a time.
 
@@ -56,7 +56,12 @@ Notes: [BK] I'm not sure yet whether the state of the card or card position shou
 
 ##### Models #####
 
-__Card__: Should be nothing more than a data class that holds card value properties. No two __cards__ should have the same values. Once a __card__ is created it shouldn't be deleted and reinitialized in a __game__.
+__Card__:
+- Should be nothing more than a data class that holds card value properties.
+- No two __cards__ should have the same value.
+- Once a __card__ is created it shouldn't be deleted and reinitialized in a __game__.
+- Cards are comparable to one another on a value basis only.
+- Does not hold any 'magic' knowledge! The __Dealer__ or 'game manager' should worry about the 'magic' state.
 
 __Dealer__: This should be treated as the game manager and hold all commands and logic for running the game. Should only ever be initialized once per game. Should only ever be one __dealer__. Should create the shuffled deck.
 
