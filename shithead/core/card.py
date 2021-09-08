@@ -69,6 +69,9 @@ class Card:
     # ====================================================================== #
     #                             Comparisons                                #
     # ====================================================================== #
+    def __hash__(self) -> int:
+        return hash((self.suit, self.value))
+
     def __eq__(self, o: object) -> bool:
         # Only use value of class to compare
         if isinstance(o, Card):
@@ -128,22 +131,27 @@ class Deck:
     def __init__(self):
         """Initialize the deck of cards."""
 
-        # Create 52 cards with no matching.
-        self.cards = self.create_cards()
+        # Create 52 cards with no matching and assign to __cards
+        self.create_cards()
+
+    @property
+    def cards(self):
+        return [c for c in self.__cards]
 
     def create_cards(self):
         """Create a complete deck of Cards."""
 
         # Initialize the return list and iterate over card creation
-        cards = []
+        cards = set()
         for suit in ['Club', 'Diamond', 'Heart', 'Spade']:
             for val in range(2, 15):
-                cards.append(Card(suit=suit, value=val))
+                cards.add(Card(suit=suit, value=val))
 
-        return cards
+        self.__cards = cards
 
     def shuffle(self):
         """Randomise the order of Cards in the deck."""
+        self.__cards.add('two')
         pass
 
 class Dealer:
