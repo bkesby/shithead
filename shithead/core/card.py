@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Core game component file. Contains game object classes.
+Card data class to be used by Deck.
 """
 
 
@@ -86,6 +86,7 @@ class Deck:
 
     def shuffle(self):
         """Randomise the order of Cards in the deck."""
+        pass
 
 class Dealer:
     """Unique card handler."""
