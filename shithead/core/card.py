@@ -46,17 +46,55 @@ class Card:
             raise TypeError('Attribute value should be of type `int`')
 
         # Ensure set value is in valid range
-        if not x in range(1,14):
-            raise ValueError('Attribute value must be in the range of 1 >= 14')
+        if not x in range(2,15):
+            raise ValueError('Attribute value must be in the range of 2 >= 14')
         else:
             self.__value = x
 
+    # ====================================================================== #
+    #                               Comparisons                              #
+    # ====================================================================== #
     def __eq__(self, o: object) -> bool:
         # Only use value of class to compare
         if isinstance(o, Card):
             return self.value == o.value
         elif isinstance(o, int):
             return self.value == o
+        else:
+            return False
+
+    def __ne__(self, o: object) -> bool:
+        NotImplemented
+
+    def __lt__(self, o: object) -> bool:
+        if isinstance(o, Card):
+            return self.value < o.value
+        elif isinstance(o, int):
+            return self.value < o
+        else:
+            return False
+
+    def __gt__(self, o: object) -> bool:
+        if isinstance(o, Card):
+            return self.value > o.value
+        elif isinstance(o, int):
+            return self.value > o
+        else:
+            return False
+
+    def __le__(self, o: object) -> bool:
+        if isinstance(o, Card):
+            return self.value <= o.value
+        elif isinstance(o, int):
+            return self.value <= o
+        else:
+            return False
+
+    def __ge__(self, o: object) -> bool:
+        if isinstance(o, Card):
+            return self.value >= o.value
+        elif isinstance(o, int):
+            return self.value >= o
         else:
             return False
 

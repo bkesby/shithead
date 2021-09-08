@@ -5,7 +5,7 @@ Deck testing functions.
 
 import unittest
 
-from shithead.common.core import Deck
+from shithead.core import Deck
 
 
 class TestDeck(unittest.TestCase):
@@ -21,7 +21,7 @@ class TestDeck(unittest.TestCase):
     # Ensure all cards are unique
     def test_unique(self):
         pass
-        
-    
+
+
 if __name__ == "__main__":
     unittest.main()
