@@ -2,6 +2,7 @@
 """
 Card data class to be used by Deck.
 """
+from random import shuffle
 
 
 class Card:
@@ -135,24 +136,30 @@ class Deck:
         self.create_cards()
 
     @property
-    def cards(self):
-        return [c for c in self.__cards]
+    def cards(self) -> list:
+        return self.__cards
 
     def create_cards(self):
         """Create a complete deck of Cards."""
 
-        # Initialize the return list and iterate over card creation
-        cards = set()
-        for suit in ['Club', 'Diamond', 'Heart', 'Spade']:
+        # Iterate over suits and cards numbers
+        cards = []
+        for suit in ['c', 'd', 'h', 's']:
             for val in range(2, 15):
-                cards.add(Card(suit=suit, value=val))
+                cards.append(Card(suit, val))
 
+        # Initialize cards set in __hidden__ attribute
         self.__cards = cards
 
     def shuffle(self):
         """Randomise the order of Cards in the deck."""
-        self.__cards.add('two')
-        pass
+        shuffle(self.cards)
+
+    def __str__(self) -> str:
+        return f"Deck of 52 cards."
+
+    def __repr__(self) -> str:
+        return f"Deck()"
 
 class Dealer:
     """Unique card handler."""
