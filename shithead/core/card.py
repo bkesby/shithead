@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Card data class to be used by Deck.
+Base Card data class and the deck to use the Cards.
 """
 from random import shuffle
 
@@ -42,7 +42,7 @@ class Card:
         return self.__value
 
     @value.setter
-    def value(self, x):
+    def value(self, x) -> None:
         # Type check
         if type(x) != int:
             raise TypeError('Attribute value should be of type `int`')
@@ -139,7 +139,7 @@ class Deck:
     def cards(self) -> list:
         return self.__cards
 
-    def create_cards(self):
+    def create_cards(self) -> None:
         """Create a complete deck of Cards."""
 
         # Iterate over suits and cards numbers
@@ -155,22 +155,20 @@ class Deck:
         """Randomise the order of Cards in the deck."""
         shuffle(self.cards)
 
+    def __next__(self):
+        """Pop of last card and return."""
+        return self.cards.pop()
+
+    def __iter__(self):
+        """Creates the class as an iterator."""
+        return self
+
     def __str__(self) -> str:
         return f"Deck of 52 cards."
 
     def __repr__(self) -> str:
         return f"Deck()"
 
-class Dealer:
-    """Unique card handler."""
-
-    def __init__(self):
-        """Initialize all game components."""
-
-        self.round = 0
-        self.turn = 0
-
-        self.deck = Deck()
 
 if __name__ == "__main__":
     pass
