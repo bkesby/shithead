@@ -2,7 +2,7 @@
 """
 Base Card data class and the deck to use the Cards.
 """
-from random import shuffle
+from random import randint, shuffle
 
 
 class Card:
@@ -154,6 +154,12 @@ class Deck:
     def shuffle(self):
         """Randomise the order of Cards in the deck."""
         shuffle(self.cards)
+
+    def fisher_yates_shuffle(self):
+        for i in range(len(self.cards)-1, 0, -1):
+            j = randint(o, i)
+            self.cards[i], self.cards[j] = self.cards[j], self.cards[i]
+        return self
 
     def __next__(self):
         """Pop of last card and return."""
