@@ -8,8 +8,8 @@ from random import randint, shuffle
 class Card:
     """Class for holding card values."""
 
-    suits = {'c': 'club', 'd': 'diamond', 'h': 'heart', 's': 'spade'}
-    key = {'11': 'Jack', '12': 'Queen', '13': 'King', '14': 'Ace'}
+    suits = {"c": "club", "d": "diamond", "h": "heart", "s": "spade"}
+    key = {"11": "Jack", "12": "Queen", "13": "King", "14": "Ace"}
 
     def __init__(self, suit, value):
 
@@ -24,7 +24,7 @@ class Card:
     def suit(self, x):
         # Type check
         if type(x) != str:
-            raise TypeError('Attribute suit should be of type `str`')
+            raise TypeError("Attribute suit should be of type `str`")
 
         # Always create lower case
         x = x.lower()
@@ -35,7 +35,7 @@ class Card:
         elif x in self.suits.values():
             self.__suit = x
         else:
-            raise ValueError(f'Attribute suit must be one of {self.suits.values()}')
+            raise ValueError(f"Attribute suit must be one of {self.suits.values()}")
 
     @property
     def value(self):
@@ -45,11 +45,11 @@ class Card:
     def value(self, x) -> None:
         # Type check
         if type(x) != int:
-            raise TypeError('Attribute value should be of type `int`')
+            raise TypeError("Attribute value should be of type `int`")
 
         # Ensure set value is in valid range
-        if not x in range(2,15):
-            raise ValueError('Attribute value must be in the range of 2 >= 14')
+        if not x in range(2, 15):
+            raise ValueError("Attribute value must be in the range of 2 >= 14")
         else:
             self.__value = x
 
@@ -123,7 +123,6 @@ class Card:
             return False
 
 
-
 # TODO: Create the Deck as a Card generator. Initializing creates all cards and
 # completes a shuffle()
 class Deck:
@@ -144,7 +143,7 @@ class Deck:
 
         # Iterate over suits and cards numbers
         cards = []
-        for suit in ['c', 'd', 'h', 's']:
+        for suit in ["c", "d", "h", "s"]:
             for val in range(2, 15):
                 cards.append(Card(suit, val))
 
@@ -156,8 +155,8 @@ class Deck:
         shuffle(self.cards)
 
     def fisher_yates_shuffle(self):
-        for i in range(len(self.cards)-1, 0, -1):
-            j = randint(o, i)
+        for i in range(len(self.cards) - 1, 0, -1):
+            j = randint(0, i)
             self.cards[i], self.cards[j] = self.cards[j], self.cards[i]
         return self
 
