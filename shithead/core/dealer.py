@@ -2,14 +2,15 @@
 """
 Dealer class to act as game manager to handle all game components.
 """
+from itertools import cycle
 
 from shithead.core import Deck
 
 
 class Dealer:
-    """Game manager that controls all core components."""
+    """Game controller that manages all game components."""
 
-    def __init__(self):
+    def __init__(self, players: list):
         """Initialize all game components."""
 
         # Create the deck and prepare
@@ -17,14 +18,22 @@ class Dealer:
         self.deck.shuffle()
 
         # Collect Players
-        self.players = []
+        self.players = players
 
     def deal(self):
         """Deal out cards to all players from top of deck."""
 
-        # Loop until all players have enough cards
-        # Add the next card from deck to each player Hand
-        pass
+        hand_has_room = self.players[-1].positions['hand'] < 4
+        loop = cycle(self.players)
+
+        while hand_has_room:
+            player = next(loop)
+            player.add(next(self.deck))
+            print('card added.')
+
+        print('all cards added!')
+
+
 
 
 if __name__ == "__main__":
